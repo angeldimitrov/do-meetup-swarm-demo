@@ -27,7 +27,7 @@ docker run angeldimitrov/build-ship-run
 docker-compose -f docker-compose-consul.yml up -d
 ```
 ```bash
-# create the swarm
+# create the swarm with 3 nodes
 docker-machine create $driver_ops \
     --swarm \
     --swarm-master \
@@ -35,6 +35,22 @@ docker-machine create $driver_ops \
     --engine-opt="cluster-store=consul://$(docker-machine ip demo-infra):8500" \
     --engine-opt="cluster-advertise=eth0:2376" \
     demo-swarm-node-01
+    
+docker-machine create $driver_ops \
+    --swarm \
+    --swarm-master \
+    --swarm-discovery="consul://$(docker-machine ip demo-infra):8500" \
+    --engine-opt="cluster-store=consul://$(docker-machine ip demo-infra):8500" \
+    --engine-opt="cluster-advertise=eth0:2376" \
+    demo-swarm-node-02
+    
+docker-machine create $driver_ops \
+    --swarm \
+    --swarm-master \
+    --swarm-discovery="consul://$(docker-machine ip demo-infra):8500" \
+    --engine-opt="cluster-store=consul://$(docker-machine ip demo-infra):8500" \
+    --engine-opt="cluster-advertise=eth0:2376" \
+    demo-swarm-node-03
 ```
 
 ```bash
