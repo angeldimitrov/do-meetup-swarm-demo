@@ -3,7 +3,6 @@ export digitalocean_token=***********
 
 export driver_ops="--driver=digitalocean \
   --digitalocean-region=fra1 \
-  --digitalocean-image=debian-8-x64 \
   --digitalocean-access-token=$digitalocean_token \
   --digitalocean-size=1gb"
 ```
