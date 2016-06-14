@@ -34,7 +34,6 @@ docker-machine create $driver_ops \
     --swarm-master \
     --swarm-discovery="consul://$(docker-machine ip demo-infra):8500" \
     --engine-opt="cluster-store=consul://$(docker-machine ip demo-infra):8500" \
-#    --engine-label="com.docker.network.driver.overlay.bind_interface=eth0" \
     --engine-opt="cluster-advertise=eth0:2376" \
     demo-swarm-node-01
 ```
