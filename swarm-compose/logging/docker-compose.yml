@@ -1,0 +1,19 @@
+version: "2"
+services:
+
+  logspout:
+    image: gliderlabs/logspout
+    ports:
+      - "7777:7777"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    command: syslog://logbox:5000
+
+  logbox:
+    image: sirile/minilogbox
+
+  kibanabox:
+    image: sirile/kibanabox
+    ports:
+      - "5601:5601"
+    command: http://logbox:9200
